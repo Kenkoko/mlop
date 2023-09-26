@@ -21,7 +21,8 @@ if __name__ == "__main__":
     pipe = PipelineController(
             project='examples',
             name='linear_regression pipeline',
-            version='1.0',
+            version='1.1',
+            repo='https://github.com/Kenkoko/mlop.git',
             add_pipeline_tags=False,
         )
     pipe.add_parameter(
