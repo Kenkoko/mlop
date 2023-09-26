@@ -9,6 +9,7 @@ def regression_results(model, X_test, y_test):
     import sklearn.metrics as metrics
     import numpy as np
     import pandas as pd
+    from clearml import Logger
 
     # Regression metrics
     y_pred = model.predict(X_test)
@@ -22,23 +23,11 @@ def regression_results(model, X_test, y_test):
     }
 
     report_df = pd.DataFrame(resutls, index=[0])
-    print(report_df)
+
+    Logger.current_logger().report_table(
+        title='Regression Report',
+        series='Performance',
+        table_plot = report_df
+    )
 
     return report_df
-
-def extract_coef_intercept(model):
-    # Extract coefficients and interception from the SciKit Linear Reg model
-    # input
-    #   @param model: Scikit Model
-    # output:
-    #   Pandas table
-    
-    import pandas as pd
-
-    output = {
-        "const": model.intercept_
-    }
-    for idx, coef in enumerate(model.coef_) :
-        output[f'x{idx + 1}'] = round(coef, 4)
-    
-    return pd.DataFrame(output, index=[0])
