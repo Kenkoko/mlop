@@ -12,12 +12,11 @@ def train_linear_regression(X_train, y_train):
     model = LinearRegression()
     model.fit(X_train, y_train)
 
-    Logger.current_logger().report_table(
+    PipelineDecorator.get_logger().report_table(
         title='Regression Report',
         series='Coefficient and Interception',
         table_plot = training.extract_coef_intercept(model)
     )
-
     return model
 
 

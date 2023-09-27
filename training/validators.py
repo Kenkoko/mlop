@@ -24,7 +24,7 @@ def regression_results(model, X_test, y_test):
 
     report_df = pd.DataFrame(resutls, index=[0])
 
-    Logger.current_logger().report_table(
+    PipelineDecorator.get_logger().report_table(
         title='Regression Report',
         series='Performance',
         table_plot = report_df
